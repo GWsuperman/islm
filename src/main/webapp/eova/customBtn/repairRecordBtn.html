@@ -1,0 +1,15 @@
+<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'${button.icon!}',plain:true" onclick="eova_btn_${button.id}()">${button.name!}</a>
+<script type="text/javascript">
+	var eova_btn_${button.id} = function(){
+		var $widget = $('#${gridId}');
+        var rows = $.getWidgetSelections($widget);
+        if (rows.length == "0") {
+        	$.slideMsg("请选择一条记录！");
+            return;
+        }
+        var json = JSON.stringify(rows);
+        var data = eval("("+json+")"); 
+         var url = '/single_grid/list/repair_info?query_deviceid=' +data[0].id;
+        parent.addTab(data[0].devicename + '维修记录', url,'eova-icon818');
+	};
+</script>

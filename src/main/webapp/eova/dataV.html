@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<%include("/eova/meta.html"){}%>
+        <%include("/eova/include.html"){}%>
+		<title>dataV看板</title>
+		<style type="text/css">
+			.btnError{
+					position: absolute;
+					width: 12%;
+					height: 5%;
+					font-size: 1.2vw;
+					border-radius: 0.5vw;
+					border: 1px solid gray;
+					left: 81%;
+					top: 42%;
+					text-align: center;
+					background: rgb(247, 209, 24);
+					cursor: pointer;
+					letter-spacing: 0.2vw;
+					line-height:5%;
+			}
+		</style>
+	</head>
+	<body>
+	<div style="height:100%;width:100%;position: relative;">
+		<iframe id="mainFrame" name="mainFrame" src="http://datav.aliyun.com/share/e5ffeca59f494dd97eb2a7ddf870bc36" allowTransparency="true" style="border: 0; width: 100%; height: 100%;" frameBorder="0"></iframe>
+			<button type="button" class="btnError">agv位置</button>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			$(".btnError").click(function(){
+				 parent.btnFault(); 
+			});
+		})
+	</script>
+	</body>
+</html>

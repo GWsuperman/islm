@@ -1,0 +1,25 @@
+<%var head = {%> <%};%> <%var body = {%>
+<body class="easyui-layout">
+	<div data-options="region:'center'" data-options="fit:true,border:false">
+		<combo id="aaa" name="aaa" exp="selectAreaByLv2AndPid,22" isReadonly="false" />
+		<#combo id="aaa" name="aaa" exp="selectAreaByLv2AndPid,22" isReadonly="false" multiple="true"/>
+		<#combotree id="cc" name="cc" exp="selectEovaMenu" />
+		<button id="ok">ok</button>
+		<button id="set">set</button>
+	</div>
+	<script>
+		$('div.eova-combotree').eovacombotree();
+		$(function(){
+			$('#ok').click(function(){
+				var a = $('#cc').eovacombotree().getValue();
+				alert(a);
+			})
+			$('#set').click(function(){
+				$('#cc').eovacombotree().setValues([20,21]);
+				//$('#cc').eovacombotree().setTexts(['菜单管理', '按钮管理']);
+			})
+		})
+	</script>
+</body>
+
+<%};%> <%include("/eova/layout/default.html",{'title' : 'test001', 'head': head, 'layoutContent': body}){}%>

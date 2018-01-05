@@ -1,0 +1,285 @@
+<html>
+	<head>
+		<%include("/eova/meta.html"){}%>
+        <%include("/eova/include.html"){}%>
+		<title>小车位置</title>
+		<style type="text/css">
+			.vessel{
+				
+			}
+			.div-title{
+				    width: 240px;
+				    font-size: 24px;
+				    height: 30px;
+				    line-height: 30px;
+				    letter-spacing: 1px;
+				    margin: 10 auto;
+			}
+			.routeImg{
+		       margin: 10px 8%;
+		       width:80%;
+		           min-height: 520px;
+			}
+			.location{ 
+		  	    position: absolute;
+			    width: 22px;
+			    height: 22px;
+			    border-radius: 22px;
+			    background: yellow;
+			    text-align: center;
+			    line-height: 22px;
+			    font-weight: bold;
+			}
+			#location1{ 
+		    left: 23%;
+		    top: 47%;
+			}
+			#location2{
+		       left: 27.8%;
+			    top: 47%;
+			} 
+    		#location3{
+	            left: 33%;
+			    top: 47%;
+			} 
+			#location4{
+			    left: 38%;
+			    top: 47%;
+			} 
+			#location5{
+			  left: 44%;
+			    top: 47%;
+			} 
+			#location6{
+			  left: 50%;
+			    top: 47%;
+			} 
+			#location7{
+			    left: 54%;
+			    top: 47%;
+			} 
+			#location8{
+			    left:60%;
+			    top: 47%;
+			} 
+			#location9{
+		        left: 66%;
+			    top: 47%;
+			} 
+			#location10{
+		        left: 72%;
+			    top: 47%;
+			}
+			#location11{
+		        left: 74%;
+    			top: 66.8%;
+			} 
+				#location12{
+	            left: 64.8%;
+    			top: 66.8%;
+			} 
+				#location13{
+	            left: 61.5%;
+    			top: 66.8%;
+			} 
+				#location14{
+		        left: 57%;
+    			top: 66.8%;
+			} 
+			#location15{
+	           left: 50%;
+    			top: 66.8%;
+			} 
+				#location16{
+		        left: 43%;
+    			top: 66.8%;
+			} 
+				#location17{
+		        left: 35.5%;
+    			top: 66.8%;
+			} 
+				#location18{
+		       left: 26.5%;
+    			top: 66.8%;
+			} 
+				#location19{
+		        left:20.5%;
+    			top: 66.8%;
+			} 
+			#location20{
+	           left: 17.1%;
+    			top: 56%;
+			} 
+			.errorLocation{ 
+			    width: 22px;
+			    height: 22px;
+			    border-radius: 22px;
+			    background: red;
+			    text-align: center;
+			    line-height: 22px;
+			    font-weight: bold;
+			}
+			.ckLocation{
+			    width: 22px;
+			    height: 22px;
+			    border-radius: 22px;
+			    background: yellow;
+			    text-align: center;
+			    line-height: 22px;
+			    font-weight: bold;
+			}
+			ul li{
+				float: left;
+			    list-style: none;
+			}
+			.text-show{
+				    margin-left: 5px;
+   					 margin-right: 20px;
+			}
+			.locationInfo{ 
+				        margin: 20px 20%;
+					    font-size: 18px;
+					    line-height: 50px;
+					    padding: 0 20px;
+			}
+			.agvInfo1{ 
+				    float: left;
+			        background: #ddd;
+				    padding: 0 20px;
+				    border-radius: 20px;
+				    margin-left:-40px;
+			}
+			.agvInfo2{
+					float:right;
+				    background: #ddd;
+				    padding: 0 20px;
+				    border-radius: 20px;
+			}
+			.normalLocation{
+				 width: 22px;
+			    height: 22px;
+			    border-radius: 22px;
+			    background: #0bd80b;
+			    text-align: center;
+			    line-height: 22px;
+			    font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="vessel" style="position:relative;min-width: 1000px;">
+			<ul style="position:absolute;left: 66%;margin-top: 10px;">
+				<li ><div class="ckLocation"></div></li>
+				<li class="text-show">磁卡位置</li>
+				<li><div class="normalLocation"></div></li>
+				<li class="text-show">运行位置 </li>
+				<li><div class="errorLocation"></div></li>
+				<li class="text-show">故障位置 </li>
+			</ul>
+			<div class="div-title">agv小车运行位置图</div>
+			<img src="../ui/images/layout.png" class="routeImg" alt="小车路线图"/>
+				<%for(var i=1;i<=20;i++){%>
+					<div class="location" id="location${i}">${i}</div>
+				<%}%>
+			<div class="locationInfo">
+				<%if(agv1.abnormalState=='normal'){%>
+					<div class="agvInfo1" style="color:green">
+						${agv1.devicename}：${agv1.rdepict}，小车位置：${agv1.position}
+	         		</div>
+				<%}else if(agv1.abnormalState=='error' || agv1.abnormalState=='comerror'){%>
+					<div class="agvInfo1" style="color:red">
+		         		${agv1.devicename}:${agv1.adepict}
+		         		<%if(agv1.abnormalState=='error'){%>
+		         			，故障位置：${agv1.position}
+		         		<%}%>
+		         	</div>
+				<%}else{%>
+	         		<div class="agvInfo1">
+	         		${agv1.devicename}:${agv1.adepict}
+	         		</div>
+	         	<%}%>
+	         	
+	           <%if(agv2.abnormalState=='normal'){%>
+					<div class="agvInfo2" style="color:green">
+						${agv2.devicename}：${agv2.rdepict}，小车位置：${agv2.position}
+	         		</div>
+				<%}else if(agv2.abnormalState=='error'||agv2.abnormalState=='comerror'){%>
+					<div class="agvInfo2" style="color:red">
+		         		${agv2.devicename}:${agv2.adepict}
+		         		<%if(agv2.abnormalState=='error'){%>
+		         			，故障位置：${agv2.position}
+		         		<%}%>
+		         	</div>
+				<%}else{%>
+	         		<div class="agvInfo2">
+	         		${agv2.devicename}:${agv2.adepict}
+	         		</div>
+	         	<%}%>
+
+	            
+
+	            
+			</div>
+			<script type="text/javascript">
+				$(function(){
+					var abnormalState1 = '${agv1.abnormalState}';
+					var postion1 = '${agv1.position}';
+					var abnormalState2 = '${agv2.abnormalState}';
+					var postion2 = '${agv2.position}';
+					if(abnormalState1=="normal"){
+						$("#location"+postion1).css({"background":"#0bd80b"});
+					}else if(abnormalState1=="error"){
+						$("#location"+postion1).css({"background":"red"});
+					}
+					if(abnormalState2=="normal"){
+						$("#location"+postion2).css({"background":"#0bd80b"});
+					}else if(abnormalState2=="error"){
+						$("#location"+postion2).css({"background":"red"});
+					}
+						
+					setInterval(function(){
+						$.post("/dataV/refreshPosition",function(data){
+							var arr = data.lists;
+							if(arr!=undefined){
+								if(arr.length==2){
+									$(".agvInfo1").html('');
+									$(".agvInfo2").html('');
+									$(".location").css({"background":"yellow"});
+									var state = arr[0].abnormalstate;
+									var state2 = arr[1].abnormalstate;
+									if(state=='normal'){
+										$(".agvInfo1").html("<span style='color:green'>"+arr[0].devicename+"："+arr[0].rdepict+"，小车位置："+arr[0].position+"</span>");
+										$("#location"+arr[0].position).css({"background":"#0bd80b"});
+									}else if(state=='error' || state=='comerror'){
+										var t = arr[0].devicename+":"+arr[0].adepict;
+						         		if(state=='error'){
+							         		t+=",故障位置："+arr[0].position;
+							         	}
+						         		$(".agvInfo1").html("<span style='color:red;'>"+t+"</span>");
+						         		$("#location"+arr[0].position).css({"background":"red"});
+									}else{
+										$(".agvInfo1").html("<span style='color:black;'>"+arr[0].devicename+"："+arr[0].adepict+"</span>");
+									}
+								
+									if(state2=='normal'){
+										$(".agvInfo2").html("<span style='color:green'>"+arr[1].devicename+"："+arr[1].rdepict+"，小车位置："+arr[1].position+"</span>");
+										$("#location"+arr[1].position).css({"background":"#0bd80b"});
+									}else if(state2=='error' || state2=='comerror'){
+										var t = arr[1].devicename+":"+arr[1].adepict;
+						         		if(state2=='error'){
+							         		t+=",故障位置："+arr[1].position;
+							         	}
+						         		$(".agvInfo2").html("<span style='color:red;'>"+t+"</span>");
+						         		$("#location"+arr[1].position).css({"background":"red"});
+									}else{
+										$(".agvInfo2").html("<span style='color:black;'>"+arr[1].devicename+"："+arr[1].adepict+"</span>");
+									}
+								}
+							}
+						});
+					},1000*20);
+				});
+			</script>
+		</div>
+	</body>
+</html>
